@@ -17,25 +17,31 @@ namespace RabbitDemo.WorkQueues.Producer
             using (var connection = connectionFactory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
+                // Make sure the simple-work-queue exists
                 channel.QueueDeclare("simple-work-queue", true, false, false, null);
-                Console.WriteLine("Give your producer a name:");
-
+                
+                Console.Write("Give your producer a name: ");
                 var producerName = Console.ReadLine();
 
                 while (true)
                 {
-                    Console.WriteLine("How many messages should I send?");
+                    Console.Write("Number of messages to send: ");
                     var input = Console.ReadLine();
                     if (string.IsNullOrEmpty(input))
                         break;
                     
                     int numberOfMessages;
                     int.TryParse(input, out numberOfMessages);
+                    
                     for (int i = 0; i < numberOfMessages; i++)
                     {
+                        // Build a message
                         var content = string.Format("{0} message number {1}", producerName, i);
+
+                        // Send the message to simple-work-queue
                         channel.BasicPublish("", "simple-work-queue", null, content.GetBytes());
                     }
+
                     Console.WriteLine("\n{0} messages published", numberOfMessages);
                 }
             }
