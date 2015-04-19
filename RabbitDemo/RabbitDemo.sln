@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitDemo.Utilities", "Rab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitDemo.WorkQueues.Consumer", "RabbitDemo.WorkQueues.Consumer\RabbitDemo.WorkQueues.Consumer.csproj", "{461528C8-2A4C-4D23-899F-FB77C256F2F8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{C30B6097-B712-4E2A-A780-0DB0B9D63A14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6053264B-8A22-4894-B11E-0E18F8D82FF1} = {8A5EA3FC-DC20-41C5-9C24-B0A420D272B5}
 		{50183DA1-0AF9-4C57-BEE5-FFE95F4CC6CB} = {DD6D3F59-8DCD-46A6-9C10-EDA5EA2B6B23}
+		{8E4A9FBC-6915-4BCE-8300-E230FBA0D2E4} = {C30B6097-B712-4E2A-A780-0DB0B9D63A14}
 		{461528C8-2A4C-4D23-899F-FB77C256F2F8} = {DD6D3F59-8DCD-46A6-9C10-EDA5EA2B6B23}
 	EndGlobalSection
 EndGlobal
