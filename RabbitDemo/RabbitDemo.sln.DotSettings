@@ -1,0 +1,85 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Shortcut/@EntryValue">rd2-1-prefetch</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Text/@EntryValue">// Set prefetch to 1 (only fetch one message at a time)&#xD;
+channel.BasicQos(0, 1, false);&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0D0FB08FEEF72D4DAAA3585F1CB3F2C9/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Description/@EntryValue">Publish a message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Shortcut/@EntryValue">rd1-3-publish-message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=63698FE959F6A94982D9D1E2F6C13160/Text/@EntryValue">Console.WriteLine("Publishing message");&#xD;
+channel.BasicPublish("", "hello-world-queue", null, "Hello world".GetBytes());&#xD;
+&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Description/@EntryValue">Get the message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Shortcut/@EntryValue">rd1-4-get-message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=787ED90176E0D84E81BA9422A14528C8/Text/@EntryValue">var msg = channel.BasicGet("hello-world-queue", false);&#xD;
+var msgBody = msg.Body.GetString();&#xD;
+Console.WriteLine("From queue: " + msgBody);&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Description/@EntryValue">Connect to Local RabbitMQ</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Shortcut/@EntryValue">rd1-1-connect</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9FF223720D8E0C45971CD9B13A6DA6D3/Text/@EntryValue">var connectionFactory = new ConnectionFactory()&#xD;
+{&#xD;
+    HostName = "localhost"&#xD;
+};&#xD;
+&#xD;
+using (var conn = connectionFactory.CreateConnection())&#xD;
+{&#xD;
+    using (var channel = conn.CreateModel())&#xD;
+    {&#xD;
+		$END$&#xD;
+&#xD;
+		Console.ReadLine();&#xD;
+    }&#xD;
+}&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Description/@EntryValue">Declare the Hello World queue</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Shortcut/@EntryValue">rd1-2-declare-queue</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D4E429F0A8A9F8408FF0E3FD6B1295BC/Text/@EntryValue">Console.WriteLine("Declaring queue");   &#xD;
+channel.QueueDeclare("hello-world-queue", true, false, false, null);&#xD;
+</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Description/@EntryValue">Ack the message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Shortcut/@EntryValue">rd1-5-ack-message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DD06C9B61B258B4DA560391AFF0B6EF9/Text/@EntryValue">channel.BasicAck(msg.DeliveryTag, false);&#xD;
+</s:String></wpf:ResourceDictionary>

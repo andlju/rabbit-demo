@@ -21,8 +21,8 @@ namespace RabbitDemo.WorkQueues.Consumer
                 channel.QueueDeclare("simple-work-queue", true, false, false, null);
 
                 // Set prefetch to 1 (only fetch one message at a time)
-                // channel.BasicQos(0, 1, false);
-
+                channel.BasicQos(0, 1, false);
+                
                 // Set up internal consumer queue. This will try to get as many messages as possible
                 var consumer = new QueueingBasicConsumer(channel);
                 channel.BasicConsume("simple-work-queue", false, consumer);
