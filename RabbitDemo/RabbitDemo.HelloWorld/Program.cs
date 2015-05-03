@@ -26,6 +26,15 @@ namespace RabbitDemo.HelloWorld
                     channel.BasicPublish("", "hello-world-queue", null, "Hello world".GetBytes());
 
                     Console.ReadLine();
+
+                    var msg = channel.BasicGet("hello-world-queue", false);
+                    var msgBody = msg.Body.GetString();
+                    Console.WriteLine("From queue: " + msgBody);
+                    Console.ReadLine();
+
+                    channel.BasicAck(msg.DeliveryTag, false);
+                    Console.ReadLine();
+
                 }
             }
 
