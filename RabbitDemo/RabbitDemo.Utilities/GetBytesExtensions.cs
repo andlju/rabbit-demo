@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using Newtonsoft.Json;
 
 namespace RabbitDemo.Utilities
 {
+
     public static class GetBytesExtensions
     {
         public static byte[] GetBytes(this string stringValue, Encoding encoding = null)
@@ -18,5 +20,6 @@ namespace RabbitDemo.Utilities
             
             return value;
         }
+
     }
 }

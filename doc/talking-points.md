@@ -37,6 +37,9 @@ Run the app. Get message. Ack message. Queue should
 
 Work queues
 -----------
+One or more producers that create tasks.
+One or more consumers that process tasks.
+
 Show producer code.
 
 Show consumer code. 
@@ -45,7 +48,7 @@ Show consumer code.
 *** Multiple Producers
 Start one producer. Give name "First producer". Send 5 messages.
 
-Start one consumer. Watch as they are consumed.
+Start one consumer. Watch as they are processed.
 
 Start new producer. Give name Second producer.
  
@@ -53,6 +56,38 @@ Send 10 messages from First.
 
 Send 5 messages from Second.
 
-Watch them being consumed in order.
+Watch them being processed in order.
 
 *** Multiple Consumers
+
+Close Second producer
+
+Send 100 messages, watch Consumer start processing
+
+Start new consumer, nothing happens?
+
+Set Prefetch to 1
+
+Start two consumers
+
+
+Publish/Subscribe
+-----------------
+One or more publishers that publishes messages
+One or more subscribers that want to be notified on all events
+
+
+Rabbit always publishes to an exchange.
+
+ 
+
+Error handling
+--------------
+Rabbit connection can (and will) go down. Throws exception. Should reconnect.
+
+
+
+Clustering
+----------
+
+*** Load balancing
