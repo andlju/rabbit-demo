@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+
+    <div class="col-sm-offset-2 col-sm-8">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" placeholder="Search..." id="query" name="query" class="form-control" />
+                    <span class="input-group-btn">
+                        <button type="button" id="searchButton" class="btn btn-default">Go</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Result</div>
+            </div>
+            <div class="panel-body">
+                <div class="media-list">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href=""><img src=""/></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Anders Ljusberg</h4>
+                            Test
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var searchHub = $.connection.searchHub;
+            searchHub.client.responseReturned = function(msg) {
+                alert(msg);
+            }
+
+            $.connection.hub.start().done(function () {
+                // Wire up Send button to call NewContosoChatMessage on the server.
+                $('#searchButton').click(function () {
+                    searchHub.server.search($('#query').val());
+                });
+            });
+
+        });
+    </script>
+}
