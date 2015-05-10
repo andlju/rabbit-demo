@@ -92,7 +92,7 @@ namespace RabbitDemo.Routing.TwitterQueryHandler
         {
             foreach (var contactInfo in contacts)
             {
-                if (contactInfo.Item1.StartsWith(twitter))
+                if (contactInfo.Item1.StartsWith(twitter, StringComparison.InvariantCultureIgnoreCase))
                 {
                     var confidence = twitter.Length * 1.0 / contactInfo.Item1.Length;
                     yield return new Tuple<int, double>(contactInfo.Item2, confidence);

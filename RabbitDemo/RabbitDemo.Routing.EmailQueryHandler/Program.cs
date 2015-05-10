@@ -69,7 +69,7 @@ namespace RabbitDemo.Routing.EmailQueryHandler
                             {
                                 // We found a match. Let's send a message back to the bus to let everyone know
                                 // Since this is match by email address we are pretty confident that it's a good match
-                                var contactIdMessage = new {requestId, contactId = contactId, confidence = 0.95};
+                                var contactIdMessage = new {requestId, contactId = contactId, confidence = 1};
                                 var str = JsonConvert.SerializeObject(contactIdMessage);
                                 channel.BasicPublish("microservice-bus", "query.contacts", null, str.GetBytes());
                             }
