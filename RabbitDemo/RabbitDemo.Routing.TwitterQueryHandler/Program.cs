@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 using RabbitDemo.Utilities;
 using RabbitMQ.Client;
 
-namespace RabbitDemo.Routing.EmailQueryHandler
+namespace RabbitDemo.Routing.TwitterQueryHandler
 {
     class Program
     {
@@ -22,10 +22,8 @@ namespace RabbitDemo.Routing.EmailQueryHandler
             };
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var emailRegex = new Regex(@"^[^@]+@[^@]+\.[^@]+$");
-
             var connectionFactory = new ConnectionFactory()
             {
                 HostName = "localhost"
@@ -39,7 +37,7 @@ namespace RabbitDemo.Routing.EmailQueryHandler
                     channel.ExchangeDeclare("microservice-bus", ExchangeType.Topic, true);
 
                     // Create a queue for this handler
-                    var queue = channel.QueueDeclare("email-query-handler", true, false, false, null);
+                    var queue = channel.QueueDeclare("twitter-query-handler", true, false, false, null);
 
                     // Bind it to the microservice-bus exchange, subscribe to the main query topic
                     channel.QueueBind(queue.QueueName, "microservice-bus", "query");
@@ -62,14 +60,14 @@ namespace RabbitDemo.Routing.EmailQueryHandler
                         string query = msg.query;
                         string requestId = msg.requestId;
 
-                        if (query != null && emailRegex.IsMatch(query))
+                        if (query != null && query.StartsWith("@"))
                         {
-                            var contactId = FindContactIdByEmail(query);
-                            if (contactId.HasValue)
+                            var result = FindContactIdsByTwitter(query);
+                            foreach (var item in result)
                             {
                                 // We found a match. Let's send a message back to the bus to let everyone know
-                                // Since this is match by email address we are pretty confident that it's a good match
-                                var contactIdMessage = new {requestId, contactId = contactId, confidence = 0.95};
+                                var contactIdMessage =
+                                    new {requestId, contactId = item.Item1, confidence = item.Item2};
                                 var str = JsonConvert.SerializeObject(contactIdMessage);
                                 channel.BasicPublish("microservice-bus", "query.contacts", null, str.GetBytes());
                             }
@@ -80,16 +78,27 @@ namespace RabbitDemo.Routing.EmailQueryHandler
 
                 }
             }
-
         }
 
-        public static int? FindContactIdByEmail(string email)
+        private static List<Tuple<string,int>> contacts = new List<Tuple<string, int>>()
         {
-            if (email == "anders@ljusberg.se")
+            new Tuple<string,int>("@CodingInsomnia", 1),
+            new Tuple<string,int>("@hcanber", 2),
+            new Tuple<string,int>("@CeciliaSHARP", 3),
+            new Tuple<string,int>("@buzzfrog", 4),
+        };
+
+        public static IEnumerable<Tuple<int, double>> FindContactIdsByTwitter(string twitter)
+        {
+            foreach (var contactInfo in contacts)
             {
-                return 1;
+                if (contactInfo.Item1.StartsWith(twitter))
+                {
+                    var confidence = twitter.Length * 1.0 / contactInfo.Item1.Length;
+                    yield return new Tuple<int, double>(contactInfo.Item2, confidence);
+                }
             }
-            return 0;
         }
+
     }
 }

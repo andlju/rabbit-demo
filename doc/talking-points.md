@@ -79,13 +79,21 @@ One or more subscribers that want to be notified on all events
 
 Rabbit always publishes to an exchange.
 
- 
+Topics
+------
+
 
 Error handling
 --------------
 Rabbit connection can (and will) go down. Throws exception. Should reconnect.
 
 
+Frameworks
+----------
+
+*** MassTransit
+
+*** EasyNetQ
 
 Clustering
 ----------

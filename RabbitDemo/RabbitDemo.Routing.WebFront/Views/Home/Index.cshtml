@@ -5,29 +5,32 @@
 <div class="row">
 
     <div class="col-sm-offset-2 col-sm-8">
-        <form>
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" placeholder="Search..." id="query" name="query" class="form-control" />
-                    <span class="input-group-btn">
-                        <button type="button" id="searchButton" class="btn btn-default">Go</button>
-                    </span>
-                </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" placeholder="Search..." id="query" name="query" class="form-control" data-bind="value:query, valueUpdate: 'afterkeydown'" />
+                <span class="input-group-btn">
+                    <button type="button" id="searchButton" class="btn btn-default" data-bind="click:clear">Clear</button>
+                </span>
             </div>
-        </form>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="panel-title">Result</div>
             </div>
             <div class="panel-body">
-                <div class="media-list">
+                <div class="media-list" data-bind="foreach:results">
                     <div class="media">
                         <div class="media-left">
-                            <a href=""><img src=""/></a>
+                            <a href=""><img src="" /></a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">Anders Ljusberg</h4>
-                            Test
+                            <span class="label pull-right" 
+                                  data-bind="text:confidence.toFixed(2), css: { 'label-success' : confidence > 0.8, 'label-warning' : (confidence <= 0.8 && confidence > 0.5), 'label-default' : confidence <= 0.5 }"></span>
+                            <h4 class="media-heading">
+                                <span data-bind="text: contact.firstName"></span>
+                                <span data-bind="text: contact.lastName"></span>
+                            </h4>
+                            <span class="" data-bind="text: contact.twitter"></span>
                         </div>
                     </div>
                 </div>
@@ -39,17 +42,49 @@
 @section scripts
 {
     <script type="text/javascript">
-        $(function() {
+        $(function () {
+
             var searchHub = $.connection.searchHub;
-            searchHub.client.responseReturned = function(msg) {
-                alert(msg);
+
+            function MainViewModel() {
+                var self = this;
+
+                self.results = ko.observableArray([]);
+
+                self.query = ko.observable();
+                self.querySender = ko.pureComputed(self.query)
+                       .extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: 400 } });
+
+                self.querySender.subscribe(function (val) {
+                    if (val !== '') {
+                        self.search();
+                    }
+                }, this);
+
+                self.search = function () {
+                    searchHub.server.search(self.query());
+                }
+
+                self.clear = function () {
+                    self.query('');
+                    self.results.removeAll();
+                }
+
+                return self;
+            };
+
+            var mainViewModel = new MainViewModel();
+            ko.applyBindings(mainViewModel);
+
+            searchHub.client.responseReturned = function (msg) {
+                var obj = JSON.parse(msg);
+                mainViewModel.results.remove(function(r) { return r.contact.contactId === obj.contact.contactId });
+                mainViewModel.results.push(obj);
+                mainViewModel.results.sort(function(left, right) { return left.confidence < right.confidence });
             }
 
             $.connection.hub.start().done(function () {
-                // Wire up Send button to call NewContosoChatMessage on the server.
-                $('#searchButton').click(function () {
-                    searchHub.server.search($('#query').val());
-                });
+
             });
 
         });

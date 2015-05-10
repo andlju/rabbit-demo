@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 using RabbitDemo.Utilities;
 using RabbitMQ.Client;
 
-namespace RabbitDemo.Routing.EmailQueryHandler
+namespace RabbitDemo.Routing.TagQueryHandler
 {
     class Program
     {
@@ -24,8 +24,6 @@ namespace RabbitDemo.Routing.EmailQueryHandler
 
         static void Main(string[] args)
         {
-            var emailRegex = new Regex(@"^[^@]+@[^@]+\.[^@]+$");
-
             var connectionFactory = new ConnectionFactory()
             {
                 HostName = "localhost"
@@ -39,7 +37,7 @@ namespace RabbitDemo.Routing.EmailQueryHandler
                     channel.ExchangeDeclare("microservice-bus", ExchangeType.Topic, true);
 
                     // Create a queue for this handler
-                    var queue = channel.QueueDeclare("email-query-handler", true, false, false, null);
+                    var queue = channel.QueueDeclare("tag-query-handler", true, false, false, null);
 
                     // Bind it to the microservice-bus exchange, subscribe to the main query topic
                     channel.QueueBind(queue.QueueName, "microservice-bus", "query");
@@ -62,14 +60,14 @@ namespace RabbitDemo.Routing.EmailQueryHandler
                         string query = msg.query;
                         string requestId = msg.requestId;
 
-                        if (query != null && emailRegex.IsMatch(query))
+                        if (query != null)
                         {
-                            var contactId = FindContactIdByEmail(query);
-                            if (contactId.HasValue)
+                            var contactIds = FindContactIdsByTag(query);
+                            foreach (var contactId in contactIds)
                             {
                                 // We found a match. Let's send a message back to the bus to let everyone know
-                                // Since this is match by email address we are pretty confident that it's a good match
-                                var contactIdMessage = new {requestId, contactId = contactId, confidence = 0.95};
+                                // Since this is only a match by tag address we set the confidence a bit lower
+                                var contactIdMessage = new { requestId, contactId, confidence = 0.75 };
                                 var str = JsonConvert.SerializeObject(contactIdMessage);
                                 channel.BasicPublish("microservice-bus", "query.contacts", null, str.GetBytes());
                             }
@@ -80,16 +78,26 @@ namespace RabbitDemo.Routing.EmailQueryHandler
 
                 }
             }
-
         }
 
-        public static int? FindContactIdByEmail(string email)
+        private static IEnumerable<int> FindContactIdsByTag(string tag)
         {
-            if (email == "anders@ljusberg.se")
+            if (tag.Equals("swenug", StringComparison.InvariantCultureIgnoreCase))
             {
-                return 1;
+                yield return 1;
+                yield return 3;
+                yield break;
             }
-            return 0;
+            if (tag.Equals("akka", StringComparison.InvariantCultureIgnoreCase))
+            {
+                yield return 2;
+                yield break;
+            }
+            if (tag.Equals("microsoft", StringComparison.InvariantCultureIgnoreCase))
+            {
+                yield return 4;
+                yield break;
+            }
         }
     }
 }

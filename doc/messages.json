@@ -1,0 +1,20 @@
+// routing-key=query
+{
+	"query": "anders@ljusberg.se",
+	"requestId" : "1F3292EA-317E-4F2B-85CF-A61A7E45DCA3"
+}
+
+// email-query-handler queue
+// routing-key=query.contactId
+{
+	"contact-ids" : ["13"],
+	"confidence": 0.95,
+	"requestId" : "1F3292EA-317E-4F2B-85CF-A61A7E45DCA3"
+}
+
+// routing-key=response
+{
+	"firstName": "Anders",
+	"lastName": "Ljusberg",
+	"requestId" : "1F3292EA-317E-4F2B-85CF-A61A7E45DCA3"
+}
