@@ -11,7 +11,8 @@ namespace RabbitDemo.Routing.WebFront
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        RabbitHost _rabbitHost = new RabbitHost();
+        QueryResponseConsumer _queryResponseConsumer = new QueryResponseConsumer();
+        ErrorResponseConsumer _errorResponseConsumer = new ErrorResponseConsumer();
 
         protected void Application_Start()
         {
@@ -20,13 +21,16 @@ namespace RabbitDemo.Routing.WebFront
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var hostThread = new Thread(_rabbitHost.Run);
-            hostThread.Start();
+            var queryResponseThread = new Thread(_queryResponseConsumer.Run);
+            queryResponseThread.Start();
+            var errorResponseThread = new Thread(_errorResponseConsumer.Run);
+            errorResponseThread.Start();
 
         }
         protected void Application_End(object sender, EventArgs e)
         {
-            _rabbitHost.Stop();
+            _queryResponseConsumer.Stop();
+            _errorResponseConsumer.Stop();
         }
     }
 }

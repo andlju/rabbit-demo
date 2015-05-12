@@ -7,7 +7,7 @@
 // email-query-handler queue
 // routing-key=query.contactId
 {
-	"contact-ids" : ["13"],
+	"contact-ids" : "13",
 	"confidence": 0.95,
 	"requestId" : "1F3292EA-317E-4F2B-85CF-A61A7E45DCA3"
 }

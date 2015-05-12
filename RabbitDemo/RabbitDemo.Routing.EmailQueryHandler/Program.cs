@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using RabbitDemo.Utilities;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Content;
 
 namespace RabbitDemo.Routing.EmailQueryHandler
 {
@@ -38,8 +39,13 @@ namespace RabbitDemo.Routing.EmailQueryHandler
                     // Ensure the microservice-bus exchange has been created
                     channel.ExchangeDeclare("microservice-bus", ExchangeType.Topic, true);
 
+                    var queueArgs = new Dictionary<string,object>();
+                    queueArgs["x-dead-letter-exchange"] = "microservice-bus";
+                    queueArgs["x-dead-letter-routing-key"] = "query.deadletter.email";
+                    queueArgs["x-message-ttl"] = 5000;
+
                     // Create a queue for this handler
-                    var queue = channel.QueueDeclare("email-query-handler", true, false, false, null);
+                    var queue = channel.QueueDeclare("email-query-handler", true, false, false, queueArgs);
 
                     // Bind it to the microservice-bus exchange, subscribe to the main query topic
                     channel.QueueBind(queue.QueueName, "microservice-bus", "query");

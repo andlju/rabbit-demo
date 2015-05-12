@@ -83,9 +83,22 @@ Topics
 ------
 
 
+TTL and dead-letters
+--------------------
+
+
+Other TTL uses
+--------------
+Use as a timer service
+
+
 Error handling
 --------------
 Rabbit connection can (and will) go down. Throws exception. Should reconnect.
+
+
+Heartbeat
+---------
 
 
 Frameworks
